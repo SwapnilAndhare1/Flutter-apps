@@ -15,7 +15,9 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.pink,
         appBar: AppBar(
           backgroundColor: Colors.black,
-          title: const Text('Basic Project 2'),
+          title: const Text('Swapnil',
+            style: TextStyle(fontSize: 30),
+          ),
         ),
         body: SizedBox(
           height: double.infinity,
