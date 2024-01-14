@@ -19,10 +19,10 @@ class MainApp extends StatelessWidget {
         appBar: AppBar(
           title: const Text('BUTTON  APPLICATION',
             style: TextStyle(
-              fontSize: 30,
+              fontSize: 20,
             ),
           ),
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.purple,
         ),
         body: SizedBox(
           height: double.infinity,
@@ -35,10 +35,10 @@ class MainApp extends StatelessWidget {
                 Container(
                   height: 100,
                   width: 100,
-                  color: Colors.black,
+                  color: Colors.purple,
                 ),
                 Container(
-                  height: 50,
+                  height: 10,
                   width: 50,
                 ),
                 Container(
@@ -55,10 +55,18 @@ class MainApp extends StatelessWidget {
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.green,
+                    primary: Colors.purple,
                   ),
                   ),
                 ),
+                Container(
+                  height: 10,
+                ),
+                Container(
+                  height: 100,
+                  width: 100,
+                  color: Colors.purple,
+                )
                 ],
                 )
               ],
