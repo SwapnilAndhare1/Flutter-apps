@@ -11,8 +11,7 @@ class _Assignment3State extends State<Assignment3>{
   int? selectedIndex = 0;
   final List<String> imageList = ["https://tse2.explicit.bing.net/th?id=OIP.kdbCXOf52mJqF_rX3cULUAHaEK&pid=Api&P=0&h=220",
     "https://tse4.mm.bing.net/th?id=OIP.5ZK8YhsXA90Q5al--48bewHaE8&pid=Api&P=0&h=220",
-  "https://tse1.mm.bing.net/th?id=OIP.Y5peo6Gp-oZbO1mIK4arUQHaEK&pid=Api&P=0&h=220",
-  
+
 
   ];
   void showNextImage(){
