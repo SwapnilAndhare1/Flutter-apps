@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
                     width: 100,
                     color: Colors.black
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   ElevatedButton(
@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
                     width: 100,
                     color: Colors.brown,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   ElevatedButton(
@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
                     width: 100,
                     color: Colors.green,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   ElevatedButton(

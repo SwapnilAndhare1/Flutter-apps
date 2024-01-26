@@ -21,7 +21,7 @@ class _Assignment1State extends State<Assignment1>{
     return Scaffold(
       appBar: AppBar(
         title: const Text('Table of 2'),
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.blue,
       ),
 
       body: Center(
@@ -41,7 +41,7 @@ class _Assignment1State extends State<Assignment1>{
 
             Text(
               "$_count",
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 25,
               ),
             ),
@@ -52,8 +52,8 @@ class _Assignment1State extends State<Assignment1>{
 
             ElevatedButton(
               onPressed: _printTableValue, 
-              child: const Text('Print'),
-              style: ButtonStyle(
+              child: const Text("Print"),
+              style: const ButtonStyle(
                 backgroundColor:MaterialStatePropertyAll(
                   Colors.black
                 )
