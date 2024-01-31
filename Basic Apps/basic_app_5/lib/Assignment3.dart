@@ -9,10 +9,10 @@ class Assignment3 extends StatefulWidget{
 
 class _Assignment3State extends State<Assignment3>{
   int? selectedIndex = 0;
-  final List<String> imageList = ["https://tse4.mm.bing.net/th?id=OIP.lOhlBcdGa8jSHIEAMf6DWAHaGB&pid=Api&P=0&h=220",
+  final List<String> imageList = [
+    "https://tse4.mm.bing.net/th?id=OIP.lOhlBcdGa8jSHIEAMf6DWAHaGB&pid=Api&P=0&h=220",
     "http://upload.wikimedia.org/wikipedia/commons/f/f7/Charminar_india.jpg",
-  "http://dynamic.tourtravelworld.com/hotspot-images/charminar-hyderabad-1912.jpg",
-
+    "http://dynamic.tourtravelworld.com/hotspot-images/charminar-hyderabad-1912.jpg",
   ];
   void showNextImage(){
     setState(() {
@@ -43,7 +43,7 @@ class _Assignment3State extends State<Assignment3>{
 
             ElevatedButton(onPressed: showNextImage, child: const Text('Next')),
 
-            const SizedBox(height: 20,),
+            const SizedBox(height: 20),
 
             ElevatedButton(
               onPressed: (){
