@@ -125,24 +125,29 @@ class _ToggleBoxState extends State<ToggleBox>{
               ],
             ),
 
-            Row(
+            Container(
+              color: null,
+              height: 30,
+              width: double.infinity,
+              child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(onPressed:(){
-                  setState(() {
-                    count1++;
-                    count2++;
-                  });
-                },
-                style: const ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(Colors.black)
-                ), 
-                child: const Text('Button3'))
-              ],
+                children: [
+                  ElevatedButton(onPressed:(){
+                    setState(() {
+                      count1++;
+                      count2++;
+                    });
+                  },
+                  style: const ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(Colors.black)
+                  ), 
+                  child: const Text('Button3'))
+                ],
+              )
             )
           ]
         ),
-      ),      
+      ),
     );
   }
 }
