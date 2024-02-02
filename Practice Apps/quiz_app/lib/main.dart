@@ -1,21 +1,3 @@
-                /*showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    title: const Text('Payment Successful'),
-                    content: const Text('Thank you for your payment!'),
-                    actions: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                          // You might want to navigate back to the home screen
-                          //Navigator.pop(context);
-                        },
-                        child: const Text('OK'),
-                      ),
-                    ],
-                  ),
-                );*/
-
 import 'package:flutter/material.dart';
 
 void main(){
@@ -101,7 +83,7 @@ class _QuizState extends State<Quiz>{
               ),
             ),
 
-            const SizedBox(height: 40),
+            const SizedBox(height: 50),
             
             Container(
               height: 30,
