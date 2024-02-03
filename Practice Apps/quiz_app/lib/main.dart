@@ -58,7 +58,7 @@ class _QuizState extends State<Quiz>{
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Quiz App',
+          'Quiz  App',
         ),
         backgroundColor: Colors.black,
       ),
