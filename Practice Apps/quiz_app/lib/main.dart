@@ -66,7 +66,7 @@ class _QuizState extends State<Quiz>{
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const SizedBox(height: 50),
+            const SizedBox(height: 45),
             Text(
               "Question$count",
               style: const TextStyle(
