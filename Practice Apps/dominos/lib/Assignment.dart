@@ -185,14 +185,15 @@ class _DominosState extends State<Dominos>{
                         'https://tse1.mm.bing.net/th?id=OIP.Q5-bJXsO6HfQJgyBLAHQ2QHaFF&pid=Api&P=0&h=220'   
                       ),
                     ),
-                    ElevatedButton(
-                      
+                    ElevatedButton.icon(
                       onPressed: (){},
                       style: const ButtonStyle(
                         mouseCursor: MaterialStatePropertyAll(MaterialStateMouseCursor.clickable),
                         backgroundColor:MaterialStatePropertyAll(Colors.deepPurple)
                       ),
-                      child: const Icon(Icons.add)
+                      
+                      icon: const Icon(Icons.add),
+                      label: const Text('Add'),
                     )
                   ],
                 ),Column(
@@ -205,12 +206,13 @@ class _DominosState extends State<Dominos>{
                         'https://tse1.mm.bing.net/th?id=OIP.Q5-bJXsO6HfQJgyBLAHQ2QHaFF&pid=Api&P=0&h=220'   
                       ),
                     ),
-                    ElevatedButton(
+                    ElevatedButton.icon(
                       onPressed: (){},
                       style: const ButtonStyle(
                         backgroundColor:MaterialStatePropertyAll(Colors.deepPurple)
                       ),
-                      child: const Icon(Icons.add)
+                      icon: const Icon(Icons.add),
+                      label: const Text('Add'),
                     )
                   ],
                 ),Column(
@@ -223,12 +225,13 @@ class _DominosState extends State<Dominos>{
                         'https://tse1.mm.bing.net/th?id=OIP.Q5-bJXsO6HfQJgyBLAHQ2QHaFF&pid=Api&P=0&h=220'   
                       ),
                     ),
-                    ElevatedButton(
+                    ElevatedButton.icon(
                       onPressed: (){},
                       style: const ButtonStyle(
                         backgroundColor:MaterialStatePropertyAll(Colors.deepPurple)
                       ),
-                      child: const Icon(Icons.add)
+                      icon: const Icon(Icons.add),
+                      label: const Text('Add'),
                     )
                   ],
                 ),
@@ -266,12 +269,13 @@ class _DominosState extends State<Dominos>{
                         'https://tse3.mm.bing.net/th?id=OIP.W1sFSVWlWFbrexrzio-vKQHaHc&pid=Api&P=0&h=220'    
                       ),
                     ),
-                    ElevatedButton(
+                    ElevatedButton.icon(
                       onPressed: (){},
                       style: const ButtonStyle(
                         backgroundColor:MaterialStatePropertyAll(Colors.deepPurple)
                       ),
-                      child: const Icon(Icons.add)
+                      icon: const Icon(Icons.add),
+                      label: const Text('Add'),
                     )
                   ],
                 ),Column(
@@ -284,12 +288,13 @@ class _DominosState extends State<Dominos>{
                         'https://tse3.mm.bing.net/th?id=OIP.W1sFSVWlWFbrexrzio-vKQHaHc&pid=Api&P=0&h=220'  
                       ),
                     ),
-                    ElevatedButton(
+                    ElevatedButton.icon(
                       onPressed: (){},
                       style: const ButtonStyle(
                         backgroundColor:MaterialStatePropertyAll(Colors.deepPurple)
                       ),
-                      child: const Icon(Icons.add)
+                      icon: const Icon(Icons.add),
+                      label: const Text('Add'),
                     )
                   ],
                 ),
@@ -303,12 +308,13 @@ class _DominosState extends State<Dominos>{
                         'https://tse3.mm.bing.net/th?id=OIP.W1sFSVWlWFbrexrzio-vKQHaHc&pid=Api&P=0&h=220'  
                       ),
                     ),
-                    ElevatedButton(
+                    ElevatedButton.icon(
                       onPressed: (){},
                       style: const ButtonStyle(
                         backgroundColor:MaterialStatePropertyAll(Colors.deepPurple)
                       ),
-                      child: const Icon(Icons.add)
+                      icon: const Icon(Icons.add),
+                      label: const Text('Add'),
                     )
                   ],
                 ),
@@ -317,13 +323,16 @@ class _DominosState extends State<Dominos>{
           )
         ],
       ),
-      floatingActionButton: FloatingActionButton(onPressed: (){
+      floatingActionButton: FloatingActionButton.extended(onPressed: (){
         setState(() {
           flag = !flag;
         });
       },
-        backgroundColor: Colors.deepPurple,
-        child: const Icon(Icons.local_pizza_sharp),
+        backgroundColor: Colors.deepPurple, 
+        
+        icon: const Icon(Icons.refresh),
+        label: const Text('Change Title'),
+  
       ),
     );
   }
