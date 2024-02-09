@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 void main(){
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return const MaterialApp(
-      debugShowCheckedModeBanner:false,
+      debugShowCheckedModeBanner: false,
       home: Quiz(),
     );
   }
@@ -20,151 +21,249 @@ class Quiz extends StatefulWidget{
   const Quiz({super.key});
 
   @override
-  State<Quiz> createState() => _QuizState();  
+  State createState() => _QuizState();
 }
 
 class _QuizState extends State<Quiz>{
-    int count = 1;
-    int ans = 1;
-    int temp = 0;
-    int x = 0;
-    List<String> al = ["","","",""];
-    bool flag1 = false;
-    bool flag2 = false;
-    bool flag3 = false;
-    bool flag4 = false;
+  bool questionScreen = true;
+  int index = 0;
 
-  void setColor(int x){
-    if(temp==0){
-      if(x==1){
-        flag1 = true;
-        flag2 = true;
-      }else if(x==2){
-        flag2 = true;
-      }else if(x==3){
-        flag2 = true;
-        flag3 = true;
-      }else if(x==4){
-        flag2 = true;
-        flag4 = true;
-      }
-    }
-    temp++;
+  List<Map> allQuestions = [
+    {
+      "Question":"Who is the Founder of Microsoft ?",
+      "Options":["Steve Jobs","Elon Musk","Bill Gates","Page"],
+      "Ans":2,
+    },
+    {
+      "Question":"Who is the Founder of Apple ?",
+      "Options":["Steve Jobs","Elon Musk","Bill Gates","Page"],
+      "Ans":0,
+    },
+    {
+      "Question":"Who is the Founder of Tesla ?",
+      "Options":["Steve Jobs","Elon Musk","Bill Gates","Page"],
+      "Ans":1,
+    },
+    {
+      "Question":"Who is the Founder of Google ?",
+      "Options":["Steve Jobs","Elon Musk","Bill Gates","Page"],
+      "Ans":3,
+    },
+    {
+      "Question":"Who is the Founder of Amazon ?",
+      "Options":["Steve Jobs","Elon Musk","Bill Gates","None"],
+      "Ans":3,
+    },
+  ];
+
+  Color green = Colors.green;
+  Color red = Colors.red;
+  bool opt1 = true;
+  bool opt2 = true;
+  bool opt3 = true;
+  bool opt4 = true;
+
+  void change(int x){
+
   }
-  
-  @override
-  Widget build (BuildContext context){
-    
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Quiz  App',
-        ),
-        backgroundColor: Colors.black,
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const SizedBox(height: 45),
-            Text(
-              "Question$count",
-              style: const TextStyle(
-                fontSize: 25,
+  Scaffold isQuestionScreen(){
+    if(questionScreen==true){
+      if(index==5){
+        questionScreen=false;
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('QuizApp'),
+          ),
+          body: const Center(
+            child: Text(
+              'Congralution!!!',
+              style: TextStyle(
+                fontSize: 50,
+                fontWeight: FontWeight.w500
               ),
             ),
-
-            const SizedBox(height: 50),
-
-            Text(
-              'Question$count: What is Flutter?',
-              style:const TextStyle(
-                fontSize: 20,
-              ),
-            ),
-
-            const SizedBox(height: 50),
+          ),
+          floatingActionButton: FloatingActionButton(onPressed: (){
+            setState(() {
+              index = 1;
+            });
             
-            Container(
+          },
+            child: const Text('Reset'),
+          ),
+
+        );
+      }
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            'QuizApp',
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.w800,
+            ),
+          ),
+          backgroundColor: Colors.amber,
+          centerTitle: true,
+        ),
+
+        body: Column(
+          children: [
+            const SizedBox(
               height: 30,
-              width: 200,
-              color: flag1?Colors.red:Colors.black,
-              child: TextButton(onPressed: (){
-                setState(() {
-                  setColor(1);
-                });
-              }, child:const Text('Language',style: TextStyle(color: Colors.white),)),
             ),
 
-            const SizedBox(height: 20),
-
-            Container(
-              height: 30,
-              width: 200,
-              color: flag2?Colors.green:Colors.black,
-              child: TextButton(onPressed: (){
-                setState(() {
-                  setColor(2);
-                });
-              }, child:const Text('Framework',style: TextStyle(color: Colors.white),)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'Question : ',
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                Text(
+                  "${index+1}/${allQuestions.length}",
+                  style: const TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.w500
+                  ),
+                )
+              ],
             ),
 
-            const SizedBox(height: 20),
-
-            Container(
+            const SizedBox(
               height: 30,
-              width: 200,
-              color: flag3?Colors.red:Colors.black,
-
-              child: TextButton(onPressed: (){
-                setState(() {
-                  setColor(3);
-                });
-              }, child:const Text('Mobile',style: TextStyle(color: Colors.white),)),
             ),
 
-            const SizedBox(height: 20),
+            Text(
+              allQuestions[index]["Question"],
+              style: const TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w400
+              ),
+            ),
 
-            Container(
+            const SizedBox(
               height: 30,
+            ),
+
+            SizedBox(
+              height: 40,
               width: 200,
-              color:flag4?Colors.red:Colors.black,
-              child: TextButton(onPressed: (){
-                setState(() {
-                  setColor(4);
-                });
-              }, child:const Text('None Of the Above',style: TextStyle(color: Colors.white),)),
+              child: ElevatedButton(
+                onPressed: (){
+                  change(0);
+                },
+                style: opt1?const ButtonStyle(
+                  backgroundColor:MaterialStatePropertyAll(Colors.blue)
+                ):const ButtonStyle(
+                  backgroundColor:MaterialStatePropertyAll(Colors.red)
+                ),
+                child: Text(
+                  "A.${allQuestions[index]["Options"][0]}",
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+
+            SizedBox(
+              height: 40,
+              width: 200,
+              child: ElevatedButton(
+                onPressed: (){
+                  change(1);
+                },
+                style: opt2?const ButtonStyle(
+                  backgroundColor:MaterialStatePropertyAll(Colors.blue)
+                ):const ButtonStyle(
+                  backgroundColor:MaterialStatePropertyAll(Colors.red)
+                ),
+                  child: Text(
+                  "B.${allQuestions[index]["Options"][1]}",
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+
+            SizedBox(
+              height: 40,
+              width: 200,
+              child: ElevatedButton(
+                onPressed: (){
+                  change(2);
+                },
+                style: opt3?const ButtonStyle(
+                  backgroundColor:MaterialStatePropertyAll(Colors.blue)
+                ):const ButtonStyle(
+                  backgroundColor:MaterialStatePropertyAll(Colors.red)
+                ),
+                  child: Text(
+                  "C.${allQuestions[index]["Options"][2]}",
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+
+            SizedBox(
+              height: 40,
+              width: 200,
+              child: ElevatedButton(
+                onPressed: (){
+                  change(3);
+                },
+                style: opt4?const ButtonStyle(
+                  backgroundColor:MaterialStatePropertyAll(Colors.blue)
+                ):const ButtonStyle(
+                  backgroundColor:MaterialStatePropertyAll(Colors.red)
+                ),
+                  child: Text(
+                  "D.${allQuestions[index]["Options"][3]}",
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400
+                  ),
+                ),
+              ),
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          setState(() {
-            count++;
-          });
-          if(count>10){
-            showDialog(
-              context: context, 
-              builder: (context) => AlertDialog(
-                title: const Text('Last Question'),
-                content: const Text('Quiz Ended Thanks for Your Time'),
-                actions: [
-                  TextButton(onPressed:(){
-                    setState(() {
-                      count = 1;
-                    });
-                  }, child: const Text('Ok'))
-                ],
-              )
-            );
-          }
-        },
-        backgroundColor: Colors.black,
-        child: const Text(
-          'Next'
+        floatingActionButton: FloatingActionButton(
+          onPressed:(){
+            setState(() {
+              index++;
+            });
+          },
+          child: const Icon(Icons.forward), 
         ),
-      ),
-    );
+      );
+
+    }else{
+      return const Scaffold();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context){
+    return isQuestionScreen();
   }
 }
