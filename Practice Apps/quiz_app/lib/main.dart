@@ -78,7 +78,7 @@ class _QuizState extends State<Quiz>{
             child: Text(
               'Congralution!!!',
               style: TextStyle(
-                fontSize: 50,
+                fontSize: 40,
                 fontWeight: FontWeight.w500
               ),
             ),
