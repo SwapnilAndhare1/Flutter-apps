@@ -27,6 +27,8 @@ class Quiz extends StatefulWidget{
 class _QuizState extends State<Quiz>{
   bool questionScreen = true;
   int index = 0;
+  int selectedIndex = -1;
+  int marks = 0;
 
   List<Map> allQuestions = [
     {
@@ -56,54 +58,36 @@ class _QuizState extends State<Quiz>{
     },
   ];
 
-  Color green = Colors.green;
-  Color red = Colors.red;
-  bool opt1 = true;
-  bool opt2 = true;
-  bool opt3 = true;
-  bool opt4 = true;
-
-  void change(int x){
-
+  MaterialStateProperty<Color?> changedColor(int optionindex){
+    if(selectedIndex!=-1){
+      if(optionindex==allQuestions[index]["Ans"]){
+        return const MaterialStatePropertyAll(Colors.green);
+      }else if(selectedIndex==optionindex){
+        return const MaterialStatePropertyAll(Colors.red);
+      }else{
+        return const MaterialStatePropertyAll(Colors.white60);
+      }
+    }
+    return const MaterialStatePropertyAll(Colors.white60);
   }
+
   Scaffold isQuestionScreen(){
     if(questionScreen==true){
-      if(index==5){
-        questionScreen=false;
-        return Scaffold(
-          appBar: AppBar(
-            title: const Text('QuizApp'),
-          ),
-          body: const Center(
-            child: Text(
-              'Congralution!!!',
-              style: TextStyle(
-                fontSize: 40,
-                fontWeight: FontWeight.w500
-              ),
-            ),
-          ),
-          floatingActionButton: FloatingActionButton(onPressed: (){
-            setState(() {
-              index = 1;
-            });
-            
-          },
-            child: const Text('Reset'),
-          ),
-
-        );
-      }
       return Scaffold(
         appBar: AppBar(
           title: const Text(
             'QuizApp',
             style: TextStyle(
               fontSize: 30,
-              fontWeight: FontWeight.w800,
+              fontWeight: FontWeight.w700,
             ),
           ),
-          backgroundColor: Colors.amber,
+          shape:const ContinuousRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(25)
+            )
+          ),
+          backgroundColor: Colors.black54,
           centerTitle: true,
         ),
 
@@ -154,18 +138,25 @@ class _QuizState extends State<Quiz>{
               width: 200,
               child: ElevatedButton(
                 onPressed: (){
-                  change(0);
+                  if(selectedIndex==-1){
+                    selectedIndex = 0;
+                  }
+                  setState(() {});
                 },
-                style: opt1?const ButtonStyle(
-                  backgroundColor:MaterialStatePropertyAll(Colors.blue)
-                ):const ButtonStyle(
-                  backgroundColor:MaterialStatePropertyAll(Colors.red)
+                style:ButtonStyle(
+                  side: const MaterialStatePropertyAll(
+                    BorderSide(
+                      style: BorderStyle.solid,
+                    )
+                  ),
+                  backgroundColor: changedColor(0),
                 ),
                 child: Text(
                   "A.${allQuestions[index]["Options"][0]}",
                   style: const TextStyle(
                     fontSize: 20,
-                    fontWeight: FontWeight.w400
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black
                   ),
                 ),
               ),
@@ -179,18 +170,25 @@ class _QuizState extends State<Quiz>{
               width: 200,
               child: ElevatedButton(
                 onPressed: (){
-                  change(1);
+                 if(selectedIndex==-1){
+                    selectedIndex = 1;
+                  }
+                  setState(() {});
                 },
-                style: opt2?const ButtonStyle(
-                  backgroundColor:MaterialStatePropertyAll(Colors.blue)
-                ):const ButtonStyle(
-                  backgroundColor:MaterialStatePropertyAll(Colors.red)
+                style:ButtonStyle(
+                  side: const MaterialStatePropertyAll(
+                    BorderSide(
+                      style: BorderStyle.solid,
+                    )
+                  ),
+                  backgroundColor: changedColor(1),
                 ),
                   child: Text(
                   "B.${allQuestions[index]["Options"][1]}",
                   style: const TextStyle(
                     fontSize: 20,
-                    fontWeight: FontWeight.w400
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black
                   ),
                 ),
               ),
@@ -204,18 +202,25 @@ class _QuizState extends State<Quiz>{
               width: 200,
               child: ElevatedButton(
                 onPressed: (){
-                  change(2);
+                  if(selectedIndex==-1){
+                    selectedIndex = 2;
+                  }
+                  setState(() {});
                 },
-                style: opt3?const ButtonStyle(
-                  backgroundColor:MaterialStatePropertyAll(Colors.blue)
-                ):const ButtonStyle(
-                  backgroundColor:MaterialStatePropertyAll(Colors.red)
+                style:ButtonStyle(
+                  side: const MaterialStatePropertyAll(
+                    BorderSide(
+                      style: BorderStyle.solid,
+                    )
+                  ),
+                  backgroundColor: changedColor(2),
                 ),
-                  child: Text(
+                child: Text(
                   "C.${allQuestions[index]["Options"][2]}",
                   style: const TextStyle(
                     fontSize: 20,
-                    fontWeight: FontWeight.w400
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black
                   ),
                 ),
               ),
@@ -229,18 +234,25 @@ class _QuizState extends State<Quiz>{
               width: 200,
               child: ElevatedButton(
                 onPressed: (){
-                  change(3);
+                  if(selectedIndex==-1){
+                    selectedIndex = 3;
+                  }
+                  setState(() {});
                 },
-                style: opt4?const ButtonStyle(
-                  backgroundColor:MaterialStatePropertyAll(Colors.blue)
-                ):const ButtonStyle(
-                  backgroundColor:MaterialStatePropertyAll(Colors.red)
+                style:ButtonStyle(
+                  side: const MaterialStatePropertyAll(
+                    BorderSide(
+                      style: BorderStyle.solid,
+                    )
+                  ),
+                  backgroundColor: changedColor(3),
                 ),
-                  child: Text(
+                child: Text(
                   "D.${allQuestions[index]["Options"][3]}",
                   style: const TextStyle(
                     fontSize: 20,
-                    fontWeight: FontWeight.w400
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black
                   ),
                 ),
               ),
@@ -250,15 +262,128 @@ class _QuizState extends State<Quiz>{
         floatingActionButton: FloatingActionButton(
           onPressed:(){
             setState(() {
+              if(selectedIndex==-1){
+                return;
+              }
+
+              if(selectedIndex==allQuestions[index]["Ans"] && selectedIndex!=-1){
+                marks += 1;
+              }
+
+              selectedIndex=-1;
               index++;
+              if(index==allQuestions.length){
+                setState(() {
+                  questionScreen=false;
+                });
+              }
             });
           },
+          backgroundColor: Colors.black54,
           child: const Icon(Icons.forward), 
         ),
       );
 
     }else{
-      return const Scaffold();
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            'QuizApp',
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          shape:const ContinuousRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(25)
+            )
+          ),
+          backgroundColor: Colors.black54,
+          centerTitle: true,
+        ),
+        backgroundColor: Colors.white,
+        body: Column(
+          children: [
+            const SizedBox(
+              height: 50,
+              width: double.infinity,
+            ),
+
+            Container(
+              alignment: Alignment.center,
+              height: 300,
+              width: 300,
+              color: Colors.white,
+              child:  Image.network('https://static.vecteezy.com/system/resources/previews/013/391/041/non_2x/trophy-3d-illustration-free-png.png') 
+            ),
+
+            const SizedBox(
+              height: 50,
+              width: double.infinity,
+            ),
+
+            const Text(
+              'Congratulations!!!',
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.w700
+              ),
+            ),
+
+            const SizedBox(
+              height: 20,
+              width: double.infinity,
+            ),
+
+            const Text(
+              'Quiz Completed',
+              style: TextStyle(
+                fontSize: 22.5,
+                fontWeight: FontWeight.w600
+              ),
+            ),
+
+            const SizedBox(
+              height: 20,
+              width: double.infinity,
+            ),
+  
+            Text("Your Score : $marks/${allQuestions.length}",
+              style:const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w500
+              ),
+            ),
+
+            const SizedBox(
+              height: 20,
+              width: double.infinity,
+            ),
+
+            ElevatedButton(
+              onPressed:(){
+                index = 0;
+                selectedIndex = -1;
+                questionScreen = true;
+                marks = 0;
+                setState(() {});
+              } ,
+              style: const ButtonStyle(
+                backgroundColor: MaterialStatePropertyAll(
+                  Colors.black54
+                )
+              ),  
+              child: const Text('Reset',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500
+                ),
+              )
+            )
+          ],
+        ),
+      );
     }
   }
 
