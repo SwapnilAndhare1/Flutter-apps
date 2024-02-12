@@ -1,4 +1,6 @@
 
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 
 void main(){
@@ -24,57 +26,68 @@ class Quiz extends StatefulWidget{
   State createState() => _QuizState();
 }
 
+class Model{
+  final String? Question;
+  final List<String> Options;
+  final int? Ans;
+
+  const Model({this.Question,required this.Options,this.Ans});
+}
+
 class _QuizState extends State<Quiz>{
   bool questionScreen = true;
   int index = 0;
   int selectedIndex = -1;
   int marks = 0;
 
-  List<Map> allQuestions = [
-    {
-      "Question":"Who is the Founder of Microsoft ?",
-      "Options":["Steve Jobs","Elon Musk","Bill Gates","Page"],
-      "Ans":2,
-    },
-    {
-      "Question":"Who is the Founder of Apple ?",
-      "Options":["Steve Jobs","Elon Musk","Bill Gates","Page"],
-      "Ans":0,
-    },
-    {
-      "Question":"Who is the Founder of Tesla ?",
-      "Options":["Steve Jobs","Elon Musk","Bill Gates","Page"],
-      "Ans":1,
-    },
-    {
-      "Question":"Who is the Founder of Google ?",
-      "Options":["Steve Jobs","Elon Musk","Bill Gates","Page"],
-      "Ans":3,
-    },
-    {
-      "Question":"Who is the Founder of Amazon ?",
-      "Options":["Steve Jobs","Elon Musk","Bill Gates","None"],
-      "Ans":3,
-    },
+  List allQuestions = [
+    const Model(
+      Question:"Which is the Capital India ?",
+      Options:["Mumbai","Kolkata","Delhi","Chennai"],
+      Ans:2,
+    ),
+    const Model(
+      Question:"Who is the Founder of Apple ?",
+      Options:["Steve Jobs","Elon Musk","Bill Gates","Page"],
+      Ans:0,
+    ),
+    const Model(
+      Question:"Who is the Founder of Tesla ?",
+      Options:["Steve Jobs","Elon Musk","Bill Gates","Page"],
+      Ans:1,
+    ),
+    const Model(
+      Question:"Who is the Founder of Google ?",
+      Options:["Steve Jobs","Elon Musk","Bill Gates","Page"],
+      Ans:3,
+    ),
+    const Model(
+      Question:"Who is the Founder of Amazon ?",
+      Options:["Steve Jobs","Elon Musk","Bill Gates","None"],
+      Ans:3,
+    ),
   ];
 
   MaterialStateProperty<Color?> changedColor(int optionindex){
     if(selectedIndex!=-1){
-      if(optionindex==allQuestions[index]["Ans"]){
+      if(optionindex==allQuestions[index].Ans){
         return const MaterialStatePropertyAll(Colors.green);
       }else if(selectedIndex==optionindex){
         return const MaterialStatePropertyAll(Colors.red);
       }else{
-        return const MaterialStatePropertyAll(Colors.white60);
+        return const MaterialStatePropertyAll(Colors.grey);
       }
+    }else{
+      return const MaterialStatePropertyAll(Colors.grey  );
     }
-    return const MaterialStatePropertyAll(Colors.white60);
   }
 
   Scaffold isQuestionScreen(){
     if(questionScreen==true){
       return Scaffold(
+        
         appBar: AppBar(
+          
           title: const Text(
             'QuizApp',
             style: TextStyle(
@@ -82,24 +95,25 @@ class _QuizState extends State<Quiz>{
               fontWeight: FontWeight.w700,
             ),
           ),
-          shape:const ContinuousRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              bottom: Radius.circular(25)
-            )
-          ),
+          
           backgroundColor: Colors.black54,
+          
           centerTitle: true,
         ),
 
         body: Column(
+          
           children: [
+            
             const SizedBox(
-              height: 30,
+              height: 80,
             ),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
+              
               children: [
+                
                 const Text(
                   'Question : ',
                   style: TextStyle(
@@ -107,6 +121,7 @@ class _QuizState extends State<Quiz>{
                     fontWeight: FontWeight.w600,
                   ),
                 ),
+                
                 Text(
                   "${index+1}/${allQuestions.length}",
                   style: const TextStyle(
@@ -118,11 +133,11 @@ class _QuizState extends State<Quiz>{
             ),
 
             const SizedBox(
-              height: 30,
+              height: 20,
             ),
 
             Text(
-              allQuestions[index]["Question"],
+              allQuestions[index].Question,
               style: const TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.w400
@@ -130,29 +145,28 @@ class _QuizState extends State<Quiz>{
             ),
 
             const SizedBox(
-              height: 30,
+              height: 60,
             ),
 
             SizedBox(
               height: 40,
               width: 200,
               child: ElevatedButton(
+                
                 onPressed: (){
-                  if(selectedIndex==-1){
+                 if(selectedIndex==-1){
+                  setState(() {
                     selectedIndex = 0;
-                  }
-                  setState(() {});
+                  });
+                 }
                 },
+
                 style:ButtonStyle(
-                  side: const MaterialStatePropertyAll(
-                    BorderSide(
-                      style: BorderStyle.solid,
-                    )
-                  ),
                   backgroundColor: changedColor(0),
                 ),
+
                 child: Text(
-                  "A.${allQuestions[index]["Options"][0]}",
+                  "A.${allQuestions[index].Options[0]}",
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w400,
@@ -161,6 +175,7 @@ class _QuizState extends State<Quiz>{
                 ),
               ),
             ),
+
             const SizedBox(
               height: 30,
             ),
@@ -171,20 +186,17 @@ class _QuizState extends State<Quiz>{
               child: ElevatedButton(
                 onPressed: (){
                  if(selectedIndex==-1){
+                  setState(() {
                     selectedIndex = 1;
-                  }
-                  setState(() {});
+                  });
+                 }
                 },
                 style:ButtonStyle(
-                  side: const MaterialStatePropertyAll(
-                    BorderSide(
-                      style: BorderStyle.solid,
-                    )
-                  ),
                   backgroundColor: changedColor(1),
                 ),
-                  child: Text(
-                  "B.${allQuestions[index]["Options"][1]}",
+
+                child: Text(
+                  "B.${allQuestions[index].Options[1]}",
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w400,
@@ -193,6 +205,7 @@ class _QuizState extends State<Quiz>{
                 ),
               ),
             ),
+
             const SizedBox(
               height: 30,
             ),
@@ -202,21 +215,19 @@ class _QuizState extends State<Quiz>{
               width: 200,
               child: ElevatedButton(
                 onPressed: (){
-                  if(selectedIndex==-1){
+                 if(selectedIndex==-1){
+                  setState(() {
                     selectedIndex = 2;
-                  }
-                  setState(() {});
+                  });
+                 }
                 },
+
                 style:ButtonStyle(
-                  side: const MaterialStatePropertyAll(
-                    BorderSide(
-                      style: BorderStyle.solid,
-                    )
-                  ),
                   backgroundColor: changedColor(2),
                 ),
+
                 child: Text(
-                  "C.${allQuestions[index]["Options"][2]}",
+                  "C.${allQuestions[index].Options[2]}",
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w400,
@@ -225,6 +236,7 @@ class _QuizState extends State<Quiz>{
                 ),
               ),
             ),
+
             const SizedBox(
               height: 30,
             ),
@@ -234,21 +246,19 @@ class _QuizState extends State<Quiz>{
               width: 200,
               child: ElevatedButton(
                 onPressed: (){
-                  if(selectedIndex==-1){
+                 if(selectedIndex==-1){
+                  setState(() {
                     selectedIndex = 3;
-                  }
-                  setState(() {});
+                  });
+                 }
                 },
+
                 style:ButtonStyle(
-                  side: const MaterialStatePropertyAll(
-                    BorderSide(
-                      style: BorderStyle.solid,
-                    )
-                  ),
                   backgroundColor: changedColor(3),
                 ),
+
                 child: Text(
-                  "D.${allQuestions[index]["Options"][3]}",
+                  "D.${allQuestions[index].Options[3]}",
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w400,
@@ -259,24 +269,26 @@ class _QuizState extends State<Quiz>{
             ),
           ],
         ),
+
         floatingActionButton: FloatingActionButton(
           onPressed:(){
+            if(selectedIndex==-1){
+              return;
+            }
+
+            if(selectedIndex==allQuestions[index].Ans){
+              marks += 1;
+            }
+
+            selectedIndex=-1;
+            if(index==allQuestions.length-1){
+              setState(() {
+                questionScreen=false;
+              });  
+            }
+
             setState(() {
-              if(selectedIndex==-1){
-                return;
-              }
-
-              if(selectedIndex==allQuestions[index]["Ans"] && selectedIndex!=-1){
-                marks += 1;
-              }
-
-              selectedIndex=-1;
               index++;
-              if(index==allQuestions.length){
-                setState(() {
-                  questionScreen=false;
-                });
-              }
             });
           },
           backgroundColor: Colors.black54,
@@ -294,15 +306,12 @@ class _QuizState extends State<Quiz>{
               fontWeight: FontWeight.w700,
             ),
           ),
-          shape:const ContinuousRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              bottom: Radius.circular(25)
-            )
-          ),
           backgroundColor: Colors.black54,
           centerTitle: true,
         ),
+
         backgroundColor: Colors.white,
+        
         body: Column(
           children: [
             const SizedBox(
@@ -312,8 +321,8 @@ class _QuizState extends State<Quiz>{
 
             Container(
               alignment: Alignment.center,
-              height: 300,
-              width: 300,
+              height: 250,
+              width: 250,
               color: Colors.white,
               child:  Image.network('https://static.vecteezy.com/system/resources/previews/013/391/041/non_2x/trophy-3d-illustration-free-png.png') 
             ),
