@@ -1,20 +1,17 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 
-class Demo extends StatefulWidget{
+class Demo extends StatefulWidget {
   const Demo({super.key});
 
   @override
   State createState() => _DemoState();
 }
 
-class _DemoState extends State<Demo>{
-
+class _DemoState extends State<Demo> {
   int count = 0;
   List<int> list = [];
 
-  void increment(){
+  void increment() {
     setState(() {
       count++;
       list.add(count);
@@ -22,12 +19,10 @@ class _DemoState extends State<Demo>{
   }
 
   @override
-  Widget build (BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "List Demo"
-        ),
+        title: const Text("List Demo"),
         backgroundColor: Colors.black,
       ),
       body: ListView.builder(
@@ -37,15 +32,13 @@ class _DemoState extends State<Demo>{
             height: 30,
             color: Colors.amber,
             alignment: Alignment.center,
-            margin:const EdgeInsets.all(10),
-            child: Text(
-              "${list[index]}"
-            ),
+            margin: const EdgeInsets.all(10),
+            child: Text("${list[index]}"),
           );
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed:increment,
+        onPressed: increment,
         backgroundColor: Colors.black,
         child: const Text('Next'),
       ),
