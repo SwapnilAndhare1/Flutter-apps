@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    
+    .abc {
+      border-style: solid;
+      border-width: 5px;
+      border-radius: 5px;
+      border-color: black;
+      text-align: center;
+      font-size: 30px;
+    }
+
+    div {
+      border: 5px solid gray;
+      padding: 8px;
+    }
+
+    body {
+      background-color: lightgrey;
+      color: rgb(27, 114, 114);
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    h2 {
+      text-decoration: underline;
+      word-spacing: 2px;
+    }
+
+    .capitalize {
+      text-transform: capitalize;
+    }
+
+    .sp {
+      font-size: 50px;
+      text-align: center;
+      border-color: black;
+      text-transform: capitalize;
+      animation: rotate 100s linear 2000;
+    }
+
+    @keyframes rotate {
+      to {
+        transform: rotate(360deg);
+
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1 class="abc">Student login</h1>
+
+  <form>
+
+    <table cellpadding="5" cellspacing="10">
+      <tr>
+        <td>
+          <label><b>First name </b></label><br />
+          <input name="First_Name" type="text" />
+        </td>
+        <td>
+          <label class="capitalize"><b>Middle name </b></label><br />
+          <input name="Middle_Name" type="text" />
+        </td>
+        <td>
+          <label><b>Last name</b></label><br />
+          <input name="Last_Name" type="text" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label><b>Email </b></label><br />
+          <input name="Email_Address" type="text" />
+        </td>
+        <td>
+          <label><b>Address</b></label><br />
+          <input name="Address" type="text" />
+        </td>
+        <td>
+          <label><b>Phone</b></label><br />
+          <input name="Phone" type="text" />
+        </td>
+      <tr>
+        <td>
+          <label><b>Date of Birth</b></label><br />
+          <input name="Salary" type="text" />
+        </td>
+        <td>
+          <label><b>Joininig Date</b></label><br />
+          <input name="StartDate" type="text" />
+        </td>
+        <td>
+          <label><b>Marks</b></label><br />
+          <input name="Marks" type="number" />
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <select name="dropdown">
+            <option value="Fresher" selected>Fresher</option>
+            <option value="No Gap">No Gap</option>
+            <option value="One Year Gap">One Year Gap</option>
+            <option value="Two Year Gap">Two Year Gap</option>
+          </select>
+        </td>
+        <td>
+          <input type="submit" name="submit" value="Submit" />
+        </td>
+        <td>
+          <input type="reset" name="reset" value="Reset" />
+        </td>
+      </tr>
+    </table>
+  </form>
+  <h1>Upload Documents</h1>
+  <table cellpadding="10";> 
+    <tr>
+      <td>
+        Upload Allotment letter
+        <input type="file" name="fileupload" accept=".pdf" />
+      </td> 
+      <td>
+        Upload Marksheet
+        <input type="file" name="fileupload" accept=".pdf" />
+      </td> 
+    </tr>
+    
+    <tr>
+      <td>
+        Upload Marksheet
+        <input type="file" name="fileupload" accept=".pdf" />
+      </td> 
+      <td>
+        Upload Marksheet
+        <input type="file" name="fileupload" accept=".pdf" />
+      </td> 
+    </tr>
+  
+  </table>
+  <div class="abc">Welcome</div>
+</body>
+
+</html>
